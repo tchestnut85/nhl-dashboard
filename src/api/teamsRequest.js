@@ -1,16 +1,25 @@
 import nhlApiRequest from '@utils/nhlApiRequest';
 import { NHL_API_URL } from '@constants';
 
-export function fetchTeamData(params = {}) {
+const TEAMS_URL = NHL_API_URL.teams;
+
+export function fetchTeamData(config = {}) {
   return nhlApiRequest({
-    url: NHL_API_URL.teams,
-    params: { ...(params ? params : null) },
+    url: TEAMS_URL,
+    ...config,
   });
 }
 
-// get single team data by team ID
+export function getAllTeams() {
+  return fetchTeamData();
+}
 
-/* get single team roster by its ID with one of the follow query params:
- expand=team.roster - roster of active players for the team
- expand=person.names - same as above bu with less info. should this be team.names?
-*/
+export function getSingleTeam(id) {
+  const config = {
+    url: `${TEAMS_URL}${id}`,
+    params: {
+      expand: 'team.roster',
+    },
+  };
+  return fetchTeamData(config);
+}
