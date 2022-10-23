@@ -3,7 +3,7 @@ import { NHL_API_URL } from '@constants';
 
 const TEAMS_URL = NHL_API_URL.teams;
 
-export function fetchTeamData(config = {}) {
+function fetchTeamData(config = {}) {
   return nhlApiRequest({
     url: TEAMS_URL,
     ...config,
