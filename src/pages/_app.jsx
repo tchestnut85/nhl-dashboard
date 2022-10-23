@@ -1,11 +1,19 @@
 import { Provider } from 'react-redux';
+import { ChakraProvider } from '@chakra-ui/react';
 
 import store from '@redux/store';
+
+import Navbar from '@components/Navbar/Navbar';
+
+import './styles.scss';
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <ChakraProvider>
+        <Navbar />
+        <Component {...pageProps} />
+      </ChakraProvider>
     </Provider>
   );
 }

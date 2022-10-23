@@ -14,7 +14,6 @@ export default function Home() {
   const { teams, error } = useSelector(state => state.team);
 
   const getTeams = () => {
-    console.log('getTeams invoked');
     try {
       setLoading(true);
       dispatch(getAllTeams());
