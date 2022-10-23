@@ -1,9 +1,9 @@
 import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import store from '@redux/store';
-
 import Navbar from '@components/Navbar/Navbar';
+
+import store from '@redux/store';
 
 import './styles.scss';
 
