@@ -1,17 +1,33 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import { getAllTeams } from '@api/teamsRequest';
-import { useRequest } from '@hooks/useRequest';
+import { getAllTeams } from '@redux/teams';
 
 const HEADING = 'NHL Team Dashboard';
 
 export default function Home() {
-  const {
-    data: { teams },
-    loading,
-    error,
-  } = useRequest(getAllTeams);
+  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const { teams, error } = useSelector(state => state.team);
+
+  const getTeams = () => {
+    console.log('getTeams invoked');
+    try {
+      setLoading(true);
+      dispatch(getAllTeams());
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getTeams();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const renderContent = () => {
     if (loading) {
