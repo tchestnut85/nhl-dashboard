@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Head from 'next/head';
 import Link from 'next/link';
+import { Text } from '@chakra-ui/react';
 
 import { getAllTeams } from '@redux/teams';
-
-const HEADING = 'NHL Team Dashboard';
+import { MESSAGES, NHL_API_URL } from '@constants';
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -25,22 +25,30 @@ export default function Home() {
   };
 
   useEffect(() => {
-    getTeams();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    if (!teams.length) {
+      getTeams();
+    }
+  }, [teams]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const renderContent = () => {
     if (loading) {
+      // TODO - render chakra-ui spinner or skeleton, maybe extract out to useLoading hook
       return <h3>Loading Teams...</h3>;
     }
 
     if (error) {
-      return <h3>There was an error: {error}</h3>;
+      return (
+        <h3>
+          {MESSAGES.errors.default}
+          {error}
+        </h3>
+      );
     }
 
     return teams?.map(team => {
       return (
         <li key={team.teamName}>
-          <Link href={`/teams/${team.teamName.toLowerCase()}`}>
+          <Link href={`${NHL_API_URL.teams}${team.teamName.toLowerCase()}`}>
             <a>{team.name}</a>
           </Link>
         </li>
@@ -51,12 +59,15 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>NHL Dashboard</title>
+        <title>{MESSAGES.title}</title>
         <meta name="description" content="NHL Dashboard" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/* // TODO - move the main element into a separate Teams component */}
       <main>
-        <h1>{HEADING}</h1>
+        <Text as="h2" fontSize="4xl">
+          {MESSAGES.teamsPage.heading}
+        </Text>
         <section>
           <ul>{renderContent()}</ul>
         </section>
