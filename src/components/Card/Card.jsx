@@ -1,10 +1,10 @@
-import { Box } from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
 const Card = ({ children, ...props }) => (
-  <Box boxShadow="lg" p="6" rounded="md" h="100%" {...props}>
+  <Flex boxShadow="lg" p="6" rounded="md" h="100%" {...props}>
     {children}
-  </Box>
+  </Flex>
 );
 
 Card.propTypes = {

@@ -1,7 +1,7 @@
-import NextLink from 'next/link';
-import { Flex, Link, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 
 import ImageLogo from '@components/ImageLogo/ImageLogo';
+import Link from '@components/Link/Link';
 
 import { MESSAGES } from '@constants';
 
@@ -26,9 +26,9 @@ const Navbar = () => (
       {MESSAGES.navHeading}
     </Text>
     {navConfig.map(({ id, label, href }) => (
-      <NextLink key={id} href={href} passHref>
-        <Link fontSize="2xl">{label}</Link>
-      </NextLink>
+      <Link key={id} href={href} fontSize="2xl">
+        <Text>{label}</Text>
+      </Link>
     ))}
   </Flex>
 );
