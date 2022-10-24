@@ -1,12 +1,12 @@
 import { Text, ListItem, Flex } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-import Link from '@components/Link/Link';
-import Card from '@components/Card/Card';
-import ImageLogo from '@components/ImageLogo/ImageLogo';
+import Link from '@/components/Link/Link';
+import Card from '@/components/Card/Card';
+import ImageLogo from '@/components/ImageLogo/ImageLogo';
 
-import { NHL_API_URL } from '@constants';
-import getTeamLogoUrl from '@utils/getTeamLogoUrl';
+import { NHL_API_URL } from '@/constants';
+import getTeamLogoUrl from '@/utils/getTeamLogoUrl';
 
 const DivisionListItem = ({ team }) => {
   const href = `${NHL_API_URL.teams}${team.teamName.toLowerCase()}`;

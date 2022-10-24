@@ -1,8 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react';
 
-import Conferences from '@components/Conferences/Conferences';
+import Conferences from '@/components/Conferences/Conferences';
 
-import { MESSAGES } from '@constants';
+import { MESSAGES } from '@/constants';
 
 const Teams = () => (
   <Flex as="main" direction="column" w="100%" alignItems="center">

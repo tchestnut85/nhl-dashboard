@@ -1,9 +1,9 @@
 import { Flex, Text } from '@chakra-ui/react';
 
-import ImageLogo from '@components/ImageLogo/ImageLogo';
-import Link from '@components/Link/Link';
+import ImageLogo from '@/components/ImageLogo/ImageLogo';
+import Link from '@/components/Link/Link';
 
-import { MESSAGES } from '@constants';
+import { MESSAGES } from '@/constants';
 
 const navConfig = [{ id: 'teams', label: 'All Teams', href: '/' }];
 

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 import Conference from './Conference';
 
-import { MESSAGES } from '@constants';
+import { MESSAGES } from '@/constants';
 
 const {
   teamsPage: {

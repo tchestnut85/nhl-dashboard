@@ -1,4 +1,4 @@
-import { getAllTeams as fetchAllTeams } from '@api/teamsRequest';
+import { getAllTeams as fetchAllTeams } from '@/api/teamsRequest';
 
 // action types
 const GET_ALL_TEAMS = 'GET_ALL_TEAMS';

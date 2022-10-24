@@ -1,5 +1,5 @@
-import nhlApiRequest from '@utils/nhlApiRequest';
-import { NHL_API_URL } from '@constants';
+import nhlApiRequest from '@/utils/nhlApiRequest';
+import { NHL_API_URL } from '@/constants';
 
 const TEAMS_URL = NHL_API_URL.teams;
 

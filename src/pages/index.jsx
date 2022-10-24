@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Head from 'next/head';
 
-import Teams from '@components/Teams/Teams';
+import Teams from '@/components/Teams/Teams';
 
-import { getAllTeams } from '@redux/teams';
-import { MESSAGES } from '@constants';
+import { getAllTeams } from '@/redux/teams';
+import { MESSAGES } from '@/constants';
 
 export default function Home() {
   const [loading, setLoading] = useState(false);

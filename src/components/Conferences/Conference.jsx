@@ -1,7 +1,7 @@
 import { Stack, HStack, Flex, Text } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-import DivisionList from '@components/Divisions/DivisionList';
+import DivisionList from '@/components/Divisions/DivisionList';
 
 const Conference = ({ label, divisions }) => {
   return (

@@ -1,10 +1,10 @@
 import { List, Text, Flex } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-import Card from '@components/Card/Card';
+import Card from '@/components/Card/Card';
 import DivisionListItem from './DivisionListItem';
 
-import { MESSAGES } from '@constants';
+import { MESSAGES } from '@/constants';
 
 const DivisionList = ({ teams }) => {
   const conference = teams[0]?.conference.name.toLowerCase();
