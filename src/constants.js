@@ -17,6 +17,7 @@ export const PLAYER_IMAGE_URLS = {
   large:
     'https://nhl.bamcontent.com/images/headshots/current/168X168/{playerId}@3x.jpg',
   base: 'https://assets.nhle.com/mugs/nhl/20192020/{team_abbreviation}/{playerId}.png',
+  idTemplate: '{playerId}',
 };
 
 export const MESSAGES = {

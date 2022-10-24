@@ -2,7 +2,11 @@ import {
   getAllTeams as fetchAllTeams,
   getSingleTeamWithRoster as fetchSingleTeamWithRoster,
 } from '@/api/teamsRequest';
-import getTeamLogoUrl from '@/utils/getTeamLogoUrl';
+import getImageUrl from '@/utils/getImageUrl';
+
+import { TEAM_LOGO_URL } from '@/constants';
+
+const { urlBase: imageUrlBase, idTemplate: imageIdTemplate } = TEAM_LOGO_URL;
 
 // action types
 export const GET_ALL_TEAMS = 'GET_ALL_TEAMS';
@@ -18,7 +22,7 @@ export const getAllTeams = () => async dispatch => {
 
     const teams = teamsData.map(currentTeam => ({
       ...currentTeam,
-      logoUrl: getTeamLogoUrl(currentTeam.id),
+      logoUrl: getImageUrl(currentTeam.id, imageUrlBase, imageIdTemplate),
     }));
 
     dispatch({ type: GET_ALL_TEAMS, payload: teams });
@@ -36,7 +40,7 @@ export const getSingleTeamWithRoster = id => async dispatch => {
 
     const team = {
       ...teams[0],
-      logoUrl: getTeamLogoUrl(teams[0].id),
+      logoUrl: getImageUrl(teams[0].id, imageUrlBase, imageIdTemplate),
       roster: teams[0].roster.roster,
     };
 
