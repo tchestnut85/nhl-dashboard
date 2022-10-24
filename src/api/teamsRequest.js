@@ -14,7 +14,7 @@ export function getAllTeams() {
   return fetchTeamData();
 }
 
-export function getSingleTeam(id) {
+export function getSingleTeamWithRoster(id) {
   const config = {
     url: `${TEAMS_URL}${id}`,
     params: {

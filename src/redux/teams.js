@@ -1,18 +1,49 @@
-import { getAllTeams as fetchAllTeams } from '@/api/teamsRequest';
+import {
+  getAllTeams as fetchAllTeams,
+  getSingleTeamWithRoster as fetchSingleTeamWithRoster,
+} from '@/api/teamsRequest';
+import getTeamLogoUrl from '@/utils/getTeamLogoUrl';
 
 // action types
-const GET_ALL_TEAMS = 'GET_ALL_TEAMS';
-const SET_SINGLE_TEAM = 'SET_SINGLE_TEAM';
-const SET_TEAM_ERROR = 'SET_TEAM_ERROR';
+export const GET_ALL_TEAMS = 'GET_ALL_TEAMS';
+export const SET_SINGLE_TEAM = 'SET_SINGLE_TEAM';
+export const SET_TEAM_ERROR = 'SET_TEAM_ERROR';
 
 // action creators
 export const getAllTeams = () => async dispatch => {
   try {
     const {
-      data: { teams },
+      data: { teams: teamsData },
     } = await fetchAllTeams();
 
+    const teams = teamsData.map(currentTeam => ({
+      ...currentTeam,
+      logoUrl: getTeamLogoUrl(currentTeam.id),
+    }));
+
     dispatch({ type: GET_ALL_TEAMS, payload: teams });
+  } catch (err) {
+    dispatch({ type: SET_TEAM_ERROR, payload: err.message });
+    console.error(err);
+  }
+};
+
+export const getSingleTeamWithRoster = id => async dispatch => {
+  try {
+    const {
+      data: { teams },
+    } = await fetchSingleTeamWithRoster(id);
+
+    const team = {
+      ...teams[0],
+      logoUrl: getTeamLogoUrl(teams[0].id),
+      roster: teams[0].roster.roster,
+    };
+
+    dispatch({
+      type: SET_SINGLE_TEAM,
+      payload: team,
+    });
   } catch (err) {
     dispatch({ type: SET_TEAM_ERROR, payload: err.message });
     console.error(err);
@@ -36,10 +67,7 @@ function teamReducer(state = INITIAL_STATE, { type, payload }) {
     case SET_SINGLE_TEAM:
       return {
         ...state,
-        currentTeam: {
-          ...payload,
-          roster: payload.roster,
-        },
+        currentTeam: payload,
       };
     case SET_TEAM_ERROR:
       return {
