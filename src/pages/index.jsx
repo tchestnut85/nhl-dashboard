@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Head from 'next/head';
 
 import Teams from '@/components/Teams/Teams';
 
 import { getAllTeams } from '@/redux/teams';
-import { MESSAGES } from '@/constants';
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -47,14 +45,5 @@ export default function Home() {
   //   }
   // };
 
-  return (
-    <div>
-      <Head>
-        <title>{MESSAGES.title}</title>
-        <meta name="description" content="NHL Dashboard" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Teams />
-    </div>
-  );
+  return <Teams />;
 }

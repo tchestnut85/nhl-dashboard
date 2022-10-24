@@ -16,6 +16,7 @@ const Navbar = () => (
     px={5}
     py={2}
     mb={5}
+    as="header"
   >
     <ImageLogo
       w={100}
@@ -25,11 +26,13 @@ const Navbar = () => (
     <Text as="h1" fontSize="5xl">
       {MESSAGES.navHeading}
     </Text>
-    {navConfig.map(({ id, label, href }) => (
-      <Link key={id} href={href} fontSize="2xl">
-        <Text>{label}</Text>
-      </Link>
-    ))}
+    <Flex as="nav">
+      {navConfig.map(({ id, label, href }) => (
+        <Link key={id} href={href} fontSize="2xl">
+          <Text>{label}</Text>
+        </Link>
+      ))}
+    </Flex>
   </Flex>
 );
 
