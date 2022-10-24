@@ -47,6 +47,10 @@ export const MESSAGES = {
       pacific: 'Pacific',
     },
   },
+  teamPage: {
+    conference: 'Conference: ',
+    division: 'Division: ',
+  },
   errors: {
     default: 'There was an error: ',
   },

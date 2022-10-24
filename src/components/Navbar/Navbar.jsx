@@ -1,7 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react';
 
-import ImageLogo from '@/components/ImageLogo/ImageLogo';
+import ImageComp from '@/components/ImageComp/ImageComp';
 import Link from '@/components/Link/Link';
+import Heading from '@/components/Heading/Heading';
 
 import { MESSAGES } from '@/constants';
 
@@ -18,14 +19,12 @@ const Navbar = () => (
     mb={5}
     as="header"
   >
-    <ImageLogo
+    <ImageComp
       w={100}
       name={MESSAGES.navHeading.split(' ')[0]}
       src="/nhl-logo.png"
     />
-    <Text as="h1" fontSize="5xl">
-      {MESSAGES.navHeading}
-    </Text>
+    <Heading as="h1" fontSize="5xl" message={MESSAGES.navHeading} />
     <Flex as="nav">
       {navConfig.map(({ id, label, href }) => (
         <Link key={id} href={href} fontSize="2xl">

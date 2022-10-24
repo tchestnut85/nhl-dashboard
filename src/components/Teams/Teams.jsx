@@ -1,14 +1,13 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 import Conferences from '@/components/Conferences/Conferences';
+import Heading from '@/components/Heading/Heading';
 
 import { MESSAGES } from '@/constants';
 
 const Teams = () => (
   <>
-    <Text as="h2" fontSize="4xl" mb={5}>
-      {MESSAGES.teamsPage.heading}
-    </Text>
+    <Heading message={MESSAGES.teamsPage.heading} />
     <Flex as="section" w="100%" justify="space-around" gap={5} wrap="wrap">
       <Conferences />
     </Flex>

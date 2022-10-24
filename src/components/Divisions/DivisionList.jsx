@@ -13,7 +13,7 @@ const DivisionList = ({ teams }) => {
     MESSAGES.teamsPage.conferences[conference]?.divisions[division];
 
   return (
-    <Card bg="lightgray">
+    <Card bg="lightgray" color="black" fontWeight="bold">
       <Flex direction="column" gap={5} w="250px" alignItems="center" h="100%">
         <Text as="h4" fontSize="2xl" mb={3}>
           {divisionLabel}
