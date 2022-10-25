@@ -7,13 +7,19 @@ const Link = ({
   children,
   isOverlay = false,
   passHref = true,
+  noUnderline = false,
   ...props
 }) => {
   const Component = isOverlay ? LinkOverlay : ChakraLink;
 
   const LinkComponent = () => (
     <NextLink href={href} passHref={passHref}>
-      <Component {...props}>{children}</Component>
+      <Component
+        {...props}
+        textDecoration={noUnderline ? 'none !important' : ''}
+      >
+        {children}
+      </Component>
     </NextLink>
   );
 
@@ -35,6 +41,7 @@ Link.propTypes = {
   children: PropTypes.node.isRequired,
   isOverlay: PropTypes.bool,
   passHref: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default Link;

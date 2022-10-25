@@ -12,6 +12,7 @@ const { urlBase: imageUrlBase, idTemplate: imageIdTemplate } = TEAM_LOGO_URL;
 export const GET_ALL_TEAMS = 'GET_ALL_TEAMS';
 export const SET_SINGLE_TEAM = 'SET_SINGLE_TEAM';
 export const SET_TEAM_ERROR = 'SET_TEAM_ERROR';
+export const CLEAR_CURRENT_TEAM = 'CLEAR_CURRENT_TEAM';
 
 // action creators
 export const getAllTeams = () => async dispatch => {
@@ -54,6 +55,10 @@ export const getSingleTeamWithRoster = id => async dispatch => {
   }
 };
 
+export const clearCurrentTeam = () => dispatch => {
+  dispatch({ type: CLEAR_CURRENT_TEAM });
+};
+
 const INITIAL_STATE = {
   teams: [],
   currentTeam: {},
@@ -77,6 +82,11 @@ function teamReducer(state = INITIAL_STATE, { type, payload }) {
       return {
         ...state,
         error: payload,
+      };
+    case CLEAR_CURRENT_TEAM:
+      return {
+        ...state,
+        currentTeam: {},
       };
     default:
       return state;
