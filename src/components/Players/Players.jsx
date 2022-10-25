@@ -1,10 +1,14 @@
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 import Card from '@/components/Card/Card';
 import PlayerCard from '@/components/PlayerCard/PlayerCard';
 
 const Players = () => {
   const players = useSelector(state => state.team.currentTeam?.roster);
+  const {
+    query: { teamId },
+  } = useRouter();
 
   if (!players) return null;
 
@@ -17,7 +21,7 @@ const Players = () => {
       alignItems="center"
     >
       {players.map(player => (
-        <PlayerCard key={player.person.id} player={player} />
+        <PlayerCard key={player.person.id} player={player} teamId={teamId} />
       ))}
     </Card>
   );

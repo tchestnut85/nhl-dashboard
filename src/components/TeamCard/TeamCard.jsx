@@ -6,10 +6,10 @@ import { Flex, Text } from '@chakra-ui/react';
 import Heading from '@/components/Heading/Heading';
 import ImageComp from '@/components/ImageComp/ImageComp';
 import Card from '@/components/Card/Card';
+import PageHeaderSkeleton from '@/components/PageHeader/PageHeaderSkeleton';
 
 import { getSingleTeamWithRoster } from '@/redux/teams';
 import { MESSAGES } from '@/constants';
-import TeamCardSkeleton from './TeamCardSkeleton';
 
 const TeamCard = () => {
   const {
@@ -29,7 +29,7 @@ const TeamCard = () => {
   return (
     <Card bg="lightslategray" color="white" wrap="wrap" {...containerSize}>
       {!Object.keys(team).length ? (
-        <TeamCardSkeleton />
+        <PageHeaderSkeleton />
       ) : (
         <Flex gap={5} my={5}>
           <ImageComp name={team.name} src={team.logoUrl} />

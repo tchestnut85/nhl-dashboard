@@ -1,7 +1,7 @@
 import { Flex, Text, Divider } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-const PlayerDetail = ({ detailName, detail }) => (
+const PlayerCardDetails = ({ detailName, detail, hasBoldLabel = true }) => (
   <Flex
     direction="column"
     justify="space-between"
@@ -9,15 +9,16 @@ const PlayerDetail = ({ detailName, detail }) => (
     gap={1}
     fontSize={16}
   >
-    <Text fontWeight="bold">{detailName}</Text>
+    <Text fontWeight={hasBoldLabel ? 'bold' : 'normal'}>{detailName}</Text>
     <Divider w="60px" />
     <Text>{detail}</Text>
   </Flex>
 );
 
-PlayerDetail.propTypes = {
+PlayerCardDetails.propTypes = {
   detailName: PropTypes.string.isRequired,
   detail: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  hasBoldLabel: PropTypes.bool,
 };
 
-export default PlayerDetail;
+export default PlayerCardDetails;

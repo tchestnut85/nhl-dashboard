@@ -1,6 +1,6 @@
 import { Flex, SkeletonCircle, SkeletonText } from '@chakra-ui/react';
 
-const TeamCardSkeleton = () => (
+const PageHeaderSkeleton = () => (
   <Flex my={5} justify="space-between" alignItems="center" w="100%">
     <SkeletonCircle size={100} />
     <Flex direction="column" gap="25px">
@@ -10,4 +10,4 @@ const TeamCardSkeleton = () => (
   </Flex>
 );
 
-export default TeamCardSkeleton;
+export default PageHeaderSkeleton;

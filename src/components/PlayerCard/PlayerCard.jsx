@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import Card from '@/components/Card/Card';
 import ImageComp from '@/components/ImageComp/ImageComp';
 import Link from '@/components/Link/Link';
-import PlayerDetail from '@/components/PlayerCard/PlayerCardDetails';
+import PlayerCardDetails from './PlayerCardDetails';
+import PlayerFallbackImage from './PlayerFallbackImage';
 
-import { MESSAGES, PLAYER_IMAGE_URLS } from '@/constants';
+import { MESSAGES, PLAYER_IMAGE_URLS, AVATAR_SIZE } from '@/constants';
 import getImageUrl from '@/utils/getImageUrl';
-
-const AVATAR_SIZE = '2xl';
 
 const {
   teamPage: {
@@ -20,11 +19,7 @@ const {
 } = MESSAGES;
 const { playerIdTemplate, small: smallImage, fallback } = PLAYER_IMAGE_URLS;
 
-const PlayerFallbackImg = () => (
-  <ImageComp name="player avatar" src={fallback} isPlayer size={AVATAR_SIZE} />
-);
-
-const PlayerCard = ({ player }) => {
+const PlayerCard = ({ player, teamId }) => {
   const {
     person: { id, fullName },
     jerseyNumber,
@@ -47,15 +42,18 @@ const PlayerCard = ({ player }) => {
           name={fullName}
           // src={imageUrl} // see above TODO regarding error
           isPlayer
-          size={AVATAR_SIZE}
-          icon={<PlayerFallbackImg />}
+          size={AVATAR_SIZE.default}
+          icon={<PlayerFallbackImage />}
         />
         <Text fontSize={20} fontWeight="bold">
           {fullName}
         </Text>
         <Flex justify="space-between" w="full" textAlign="center">
-          <PlayerDetail detailName={POSITION_LABEL} detail={positionName} />
-          <PlayerDetail detailName={NUMBER_LABEL} detail={jerseyNumber} />
+          <PlayerCardDetails
+            detailName={POSITION_LABEL}
+            detail={positionName}
+          />
+          <PlayerCardDetails detailName={NUMBER_LABEL} detail={jerseyNumber} />
         </Flex>
       </Card>
     </Link>
@@ -68,6 +66,7 @@ PlayerCard.propTypes = {
     jerseyNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     position: PropTypes.shape({}),
   }).isRequired,
+  teamId: PropTypes.string.isRequired,
 };
 
 export default PlayerCard;
