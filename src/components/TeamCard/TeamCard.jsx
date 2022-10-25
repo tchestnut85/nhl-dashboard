@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Flex, Text, SkeletonCircle, SkeletonText } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 
 import Heading from '@/components/Heading/Heading';
 import ImageComp from '@/components/ImageComp/ImageComp';
 import Card from '@/components/Card/Card';
 
 import { getSingleTeamWithRoster } from '@/redux/teams';
-import { MESSAGES, NHL_LOGO } from '@/constants';
+import { MESSAGES } from '@/constants';
+import TeamCardSkeleton from './TeamCardSkeleton';
 
 const TeamCard = () => {
   const {
@@ -25,29 +26,10 @@ const TeamCard = () => {
     dispatch(getSingleTeamWithRoster(teamId));
   }, [teamId, isReady]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const LoadingComp = () => (
-    <Flex bg="white" boxShadow="lg" {...containerSize}>
-      <SkeletonCircle size={100} />
-      <Flex>
-        <SkeletonText
-          startColor="lightslategray.500"
-          endColor="lightgray.500"
-        />
-        <SkeletonText />
-      </Flex>
-    </Flex>
-  );
-
   return (
     <Card bg="lightslategray" color="white" wrap="wrap" {...containerSize}>
       {!Object.keys(team).length ? (
-        <Flex my={5} justify="space-between" alignItems="center" w="100%">
-          <SkeletonCircle size={100} />
-          <Flex direction="column" gap="25px">
-            <SkeletonText spacing="10" noOfLines={1} w="325px" />
-            <SkeletonText spacing="10" noOfLines={1} w="325px" />
-          </Flex>
-        </Flex>
+        <TeamCardSkeleton />
       ) : (
         <Flex gap={5} my={5}>
           <ImageComp name={team.name} src={team.logoUrl} />
