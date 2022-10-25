@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Teams from '@/components/Teams/Teams';
 
-import { getAllTeams } from '@/redux/teams';
+import { getAllTeams, clearCurrentTeam } from '@/redux/teams';
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -23,6 +23,12 @@ export default function Home() {
       setLoading(false);
     }
   };
+
+  const handleClearTeam = () => dispatch(clearCurrentTeam());
+
+  useEffect(() => {
+    handleClearTeam();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!teams.length) {

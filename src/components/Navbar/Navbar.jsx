@@ -1,22 +1,17 @@
 import { Flex, Text } from '@chakra-ui/react';
-import { useDispatch } from 'react-redux';
 
 import ImageComp from '@/components/ImageComp/ImageComp';
 import Link from '@/components/Link/Link';
 import Heading from '@/components/Heading/Heading';
 
 import { MESSAGES, NHL_LOGO } from '@/constants';
-import { clearCurrentTeam } from '@/redux/teams';
 
 const Navbar = () => {
-  const dispatch = useDispatch();
-
   const navConfig = [
     {
       id: 'teams',
       label: 'All Teams',
       href: '/',
-      handler: () => dispatch(clearCurrentTeam()),
     },
   ];
 
@@ -40,7 +35,7 @@ const Navbar = () => {
       <Heading as="h1" fontSize="5xl" message={MESSAGES.navHeading} />
       <Flex as="nav">
         {navConfig.map(({ id, label, href, handler }) => (
-          <Link key={id} href={href} fontSize="2xl" onClick={handler}>
+          <Link key={id} href={href} fontSize="2xl">
             <Text>{label}</Text>
           </Link>
         ))}
