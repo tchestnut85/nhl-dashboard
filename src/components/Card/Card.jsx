@@ -9,6 +9,7 @@ const Card = ({ children, ...props }) => (
     h="100%"
     bg="lightslategray"
     color="white"
+    borderRadius="5"
     {...props}
   >
     {children}

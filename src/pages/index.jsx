@@ -11,6 +11,8 @@ export default function Home() {
   const dispatch = useDispatch();
   const { teams, error } = useSelector(state => state.team);
 
+  // TODO - add redux action etc to clear the currentTeam state on load
+
   const getTeams = () => {
     try {
       setLoading(true);

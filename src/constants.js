@@ -11,13 +11,15 @@ export const TEAM_LOGO_URL = {
 };
 
 export const PLAYER_IMAGE_URLS = {
+  fallback: 'https://assets.nhle.com/mugs/nhl/default-skater.png',
   small:
     'https://nhl.bamcontent.com/images/headshots/current/168X168/{playerId}.jpg',
   med: 'https://nhl.bamcontent.com/images/headshots/current/168X168/{playerId}@2x.jpg',
   large:
     'https://nhl.bamcontent.com/images/headshots/current/168X168/{playerId}@3x.jpg',
   base: 'https://assets.nhle.com/mugs/nhl/20192020/{team_abbreviation}/{playerId}.png',
-  idTemplate: '{playerId}',
+  playerIdTemplate: '{playerId}',
+  teamAbbreviationTemplate: '{team_abbreviation}',
 };
 
 export const MESSAGES = {
@@ -51,6 +53,12 @@ export const MESSAGES = {
   teamPage: {
     conference: 'Conference: ',
     division: 'Division: ',
+    player: {
+      details: {
+        position: 'Position',
+        number: 'Number',
+      },
+    },
   },
   errors: {
     default: 'There was an error: ',

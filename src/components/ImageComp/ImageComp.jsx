@@ -6,7 +6,7 @@ const ImageComp = ({ name, src = '', isPlayer = false, ...props }) => {
 
   return (
     <Component
-      w={100}
+      w={isPlayer ? null : 100}
       src={src ? src : `${name}`}
       alt={isPlayer ? name : `${name} logo`}
       {...props}
