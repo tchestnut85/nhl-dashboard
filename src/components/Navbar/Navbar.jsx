@@ -5,7 +5,7 @@ import ImageComp from '@/components/ImageComp/ImageComp';
 import Link from '@/components/Link/Link';
 import Heading from '@/components/Heading/Heading';
 
-import { MESSAGES } from '@/constants';
+import { MESSAGES, NHL_LOGO } from '@/constants';
 import { clearCurrentTeam } from '@/redux/teams';
 
 const Navbar = () => {
@@ -35,7 +35,7 @@ const Navbar = () => {
       <ImageComp
         w={100}
         name={MESSAGES.navHeading.split(' ')[0]}
-        src="/nhl-logo.png"
+        src={NHL_LOGO.path}
       />
       <Heading as="h1" fontSize="5xl" message={MESSAGES.navHeading} />
       <Flex as="nav">

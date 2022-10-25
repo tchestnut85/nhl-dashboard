@@ -1,4 +1,4 @@
-import { Box, Button, Flex, StylesProvider } from '@chakra-ui/react';
+import { Box, Button, Flex } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { useDispatch } from 'react-redux';
 
@@ -28,7 +28,7 @@ const Team = () => {
             </Button>
           </Link>
         </Flex>
-        <TeamCard flex={1} />
+        <TeamCard />
         <Box flex={1} />
       </Flex>
       <Players />

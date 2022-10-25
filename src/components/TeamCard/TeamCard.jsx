@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Text, SkeletonCircle, SkeletonText } from '@chakra-ui/react';
 
 import Heading from '@/components/Heading/Heading';
 import ImageComp from '@/components/ImageComp/ImageComp';
 import Card from '@/components/Card/Card';
 
 import { getSingleTeamWithRoster } from '@/redux/teams';
-import { MESSAGES } from '@/constants';
+import { MESSAGES, NHL_LOGO } from '@/constants';
 
 const TeamCard = () => {
   const {
@@ -18,35 +18,58 @@ const TeamCard = () => {
   const dispatch = useDispatch();
   const team = useSelector(state => state.team.currentTeam);
 
+  const containerSize = { w: '500px', h: '200px' };
+
   useEffect(() => {
     if (!isReady) return;
     dispatch(getSingleTeamWithRoster(teamId));
   }, [teamId, isReady]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!Object.keys(team).length) return null;
+  const LoadingComp = () => (
+    <Flex bg="white" boxShadow="lg" {...containerSize}>
+      <SkeletonCircle size={100} />
+      <Flex>
+        <SkeletonText
+          startColor="lightslategray.500"
+          endColor="lightgray.500"
+        />
+        <SkeletonText />
+      </Flex>
+    </Flex>
+  );
 
   return (
-    <Card bg="lightslategray" color="white" wrap="wrap">
-      <Flex gap={5} my={5}>
-        <ImageComp name={team.name} src={team.logoUrl} />
-        <Flex direction="column" gap={5}>
-          <Heading message={team.name} mb="0" fontWeight="bold" />
-          <Flex gap={5}>
-            <Text>
-              <Text as="span" fontWeight="bold">
-                {MESSAGES.teamPage.conference}
-              </Text>
-              {team.conference?.name}
-            </Text>
-            <Text>
-              <Text as="span" fontWeight="bold">
-                {MESSAGES.teamPage.division}
-              </Text>
-              {team.division?.name}
-            </Text>
+    <Card bg="lightslategray" color="white" wrap="wrap" {...containerSize}>
+      {!Object.keys(team).length ? (
+        <Flex my={5} justify="space-between" alignItems="center" w="100%">
+          <SkeletonCircle size={100} />
+          <Flex direction="column" gap="25px">
+            <SkeletonText spacing="10" noOfLines={1} w="325px" />
+            <SkeletonText spacing="10" noOfLines={1} w="325px" />
           </Flex>
         </Flex>
-      </Flex>
+      ) : (
+        <Flex gap={5} my={5}>
+          <ImageComp name={team.name} src={team.logoUrl} />
+          <Flex direction="column" gap={5}>
+            <Heading message={team.name} mb="0" fontWeight="bold" />
+            <Flex gap={5}>
+              <Text>
+                <Text as="span" fontWeight="bold">
+                  {MESSAGES.teamPage.conference}
+                </Text>
+                {team.conference?.name}
+              </Text>
+              <Text>
+                <Text as="span" fontWeight="bold">
+                  {MESSAGES.teamPage.division}
+                </Text>
+                {team.division?.name}
+              </Text>
+            </Flex>
+          </Flex>
+        </Flex>
+      )}
     </Card>
   );
 };

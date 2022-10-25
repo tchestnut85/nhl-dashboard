@@ -22,6 +22,11 @@ export const PLAYER_IMAGE_URLS = {
   teamAbbreviationTemplate: '{team_abbreviation}',
 };
 
+export const NHL_LOGO = {
+  label: 'NHL logo',
+  path: '/nhl-logo.png',
+};
+
 export const MESSAGES = {
   title: 'NHL Dashboard',
   navHeading: 'NHL Dashboard',
