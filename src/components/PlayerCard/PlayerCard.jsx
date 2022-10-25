@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Card from '@/components/Card/Card';
 import ImageComp from '@/components/ImageComp/ImageComp';
 import Link from '@/components/Link/Link';
-import PlayerDetail from '@/components/PlayerDetail/PlayerDetails';
+import PlayerDetail from '@/components/PlayerCard/PlayerCardDetails';
 
 import { MESSAGES, PLAYER_IMAGE_URLS } from '@/constants';
 import getImageUrl from '@/utils/getImageUrl';
@@ -20,6 +20,10 @@ const {
 } = MESSAGES;
 const { playerIdTemplate, small: smallImage, fallback } = PLAYER_IMAGE_URLS;
 
+const PlayerFallbackImg = () => (
+  <ImageComp name="player avatar" src={fallback} isPlayer size={AVATAR_SIZE} />
+);
+
 const PlayerCard = ({ player }) => {
   const {
     person: { id, fullName },
@@ -27,15 +31,7 @@ const PlayerCard = ({ player }) => {
     position: { name: positionName },
   } = player;
 
-  const PlayerFallbackImg = () => (
-    <ImageComp
-      name="player avatar"
-      src={fallback}
-      isPlayer
-      size={AVATAR_SIZE}
-    />
-  );
-
+  // TODO - getting the following error: Failed to load resource: net::ERR_CERT_DATE_INVALID
   const imageUrl = getImageUrl(id, smallImage, playerIdTemplate);
 
   return (
@@ -49,7 +45,7 @@ const PlayerCard = ({ player }) => {
       >
         <ImageComp
           name={fullName}
-          src={imageUrl}
+          // src={imageUrl} // see above TODO regarding error
           isPlayer
           size={AVATAR_SIZE}
           icon={<PlayerFallbackImg />}
@@ -69,7 +65,7 @@ const PlayerCard = ({ player }) => {
 PlayerCard.propTypes = {
   player: PropTypes.shape({
     person: PropTypes.shape({}),
-    jerseyNumber: PropTypes.number,
+    jerseyNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     position: PropTypes.shape({}),
   }).isRequired,
 };

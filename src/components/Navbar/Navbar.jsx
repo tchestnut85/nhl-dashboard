@@ -13,6 +13,7 @@ const Navbar = () => (
     w="100%"
     justify="space-between"
     alignItems="center"
+    wrap="wrap"
     bg="lightgray"
     px={5}
     py={2}

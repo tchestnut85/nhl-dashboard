@@ -23,8 +23,10 @@ const TeamCard = () => {
     dispatch(getSingleTeamWithRoster(teamId));
   }, [teamId, isReady]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  if (!Object.keys(team).length) return null;
+
   return (
-    <Card bg="lightslategray" color="white">
+    <Card bg="lightslategray" color="white" wrap="wrap">
       <Flex gap={5} my={5}>
         <ImageComp name={team.name} src={team.logoUrl} />
         <Flex direction="column" gap={5}>

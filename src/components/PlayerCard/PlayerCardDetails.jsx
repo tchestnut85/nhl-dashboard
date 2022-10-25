@@ -17,7 +17,7 @@ const PlayerDetail = ({ detailName, detail }) => (
 
 PlayerDetail.propTypes = {
   detailName: PropTypes.string.isRequired,
-  detail: PropTypes.string.isRequired,
+  detail: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 export default PlayerDetail;
