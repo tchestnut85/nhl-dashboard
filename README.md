@@ -1,6 +1,6 @@
 # NHL Dashboard
 
-<a href="https://github.com/tchestnut85/nhl-dashboard">![Github Repo](https://img.shields.io/badge/Github%20Repo-lightgrey.svg)</a>
+<a href="https://github.com/tchestnut85/nhl-dashboard">![Github Repo](https://img.shields.io/badge/Github%20Repo-lightgrey.svg)</a> <a href=./LICENSE>![License](https://img.shields.io/badge/License%3A-MIT-green.svg)</a>
 
 ## Table of Contents
 
@@ -9,8 +9,11 @@
 - [Technology Used](#technology-used)
 - [Screenshots](#screenshots)
 - [Links](#links)
+- [License](#license)
 
 ## Installation
+
+[Node.js](https://nodejs.org/en/) needs to be installed on your machine to run this app locally.
 
 - In your terminal, navigate to the directory where you want to save the project and copy/paste the following:
   - `git clone git@github.com:tchestnut85/nhl-dashboard.git`
@@ -55,3 +58,8 @@ This app was made using the React framework Next.js since it allows for easy cli
 - **[GitHub Repo](https://github.com/tchestnut85/nhl-dashboard)**
 - **[My Portfolio](https://tomchestnut.dev)**
 - **[Connect with me on LinkedIn](https://www.linkedin.com/in/thomas-chestnut)**
+
+## License
+
+<a href=./LICENSE>![License](https://img.shields.io/badge/License%3A-MIT-green.svg)</a>  
+This app is licensed under the MIT license.
