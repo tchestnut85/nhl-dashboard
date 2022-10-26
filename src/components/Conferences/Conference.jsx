@@ -7,7 +7,12 @@ const Conference = ({ label, divisions }) => {
   return (
     <HStack>
       <Stack alignItems="center" h="100%" gap={5}>
-        <Text as="h3" fontSize="3xl">
+        <Text
+          as="h3"
+          fontSize="3xl"
+          fontFamily="Red Hat Display"
+          fontWeight="bold"
+        >
           {label}
         </Text>
         <Flex gap={10} wrap="wrap" justify="center">

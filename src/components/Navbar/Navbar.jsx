@@ -26,6 +26,8 @@ const Navbar = () => {
       py={2}
       mb={5}
       as="header"
+      fontFamily="Red Hat Display"
+      fontWeight="bold"
     >
       <ImageComp
         w={100}
