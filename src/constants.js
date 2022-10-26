@@ -15,11 +15,9 @@ export const PLAYER_IMAGE_URLS = {
   small:
     'https://nhl.bamcontent.com/images/headshots/current/168X168/{playerId}.jpg',
   med: 'https://nhl.bamcontent.com/images/headshots/current/168X168/{playerId}@2x.jpg',
-  large:
-    'https://nhl.bamcontent.com/images/headshots/current/168X168/{playerId}@3x.jpg',
-  base: 'https://assets.nhle.com/mugs/nhl/20192020/{team_abbreviation}/{playerId}.png',
-  playerIdTemplate: '{playerId}',
-  teamAbbreviationTemplate: '{team_abbreviation}',
+  imageBase: 'https://assets.nhle.com/mugs/nhl/20192020',
+  playerIdTemplate: 'playerId',
+  teamAbbreviationTemplate: 'teamAbbr',
 };
 
 export const NHL_LOGO = {

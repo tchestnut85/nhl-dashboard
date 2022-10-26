@@ -11,8 +11,8 @@ import PlayerFallbackImage from '@/components/PlayerCard/PlayerFallbackImage';
 import PlayerCardDetails from '@/components/PlayerCard/PlayerCardDetails';
 
 import { getSinglePlayer } from '@/redux/players';
-import { PLAYER_IMAGE_URLS, AVATAR_SIZE, MESSAGES } from '@/constants';
-import getImageUrl from '@/utils/getImageUrl';
+import { AVATAR_SIZE, MESSAGES } from '@/constants';
+import getPlayerImageUrl from '@/utils/getPlayerImageUrl';
 
 const {
   playerPage: { labels },
@@ -25,15 +25,16 @@ const PlayerProfileCard = () => {
   } = useRouter();
   const dispatch = useDispatch();
   const player = useSelector(state => state.player.currentPlayer);
+  const teamAbbr = useSelector(state => state.team.currentTeam.abbreviation);
 
   const containerSize = { w: '500px', h: '200px' };
+
+  const imageUrl = getPlayerImageUrl({ playerId, teamAbbr });
 
   useEffect(() => {
     if (!isReady) return;
     dispatch(getSinglePlayer(playerId));
   }, [isReady, playerId]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // if (!Object.keys(player).length) return null;
 
   return (
     <Card
@@ -55,11 +56,7 @@ const PlayerProfileCard = () => {
         >
           <ImageComp
             name={player.fullName}
-            src={getImageUrl(
-              playerId,
-              PLAYER_IMAGE_URLS.med,
-              PLAYER_IMAGE_URLS.playerIdTemplate,
-            )}
+            src={imageUrl}
             isPlayer
             size={AVATAR_SIZE.default}
             icon={<PlayerFallbackImage />}

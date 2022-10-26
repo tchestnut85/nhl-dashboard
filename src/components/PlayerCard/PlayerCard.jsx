@@ -1,5 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 import Card from '@/components/Card/Card';
 import ImageComp from '@/components/ImageComp/ImageComp';
@@ -8,7 +9,7 @@ import PlayerCardDetails from './PlayerCardDetails';
 import PlayerFallbackImage from './PlayerFallbackImage';
 
 import { MESSAGES, PLAYER_IMAGE_URLS, AVATAR_SIZE } from '@/constants';
-import getImageUrl from '@/utils/getImageUrl';
+import getPlayerImageUrl from '@/utils/getPlayerImageUrl';
 
 const {
   teamPage: {
@@ -17,20 +18,20 @@ const {
     },
   },
 } = MESSAGES;
-const { playerIdTemplate, small: smallImage, fallback } = PLAYER_IMAGE_URLS;
 
-const PlayerCard = ({ player, teamId }) => {
+const PlayerCard = ({ player }) => {
+  const teamAbbr = useSelector(state => state.team.currentTeam.abbreviation);
+
   const {
-    person: { id, fullName },
+    person: { id: playerId, fullName },
     jerseyNumber,
     position: { name: positionName },
   } = player;
 
-  // TODO - getting the following error: Failed to load resource: net::ERR_CERT_DATE_INVALID
-  const imageUrl = getImageUrl(id, smallImage, playerIdTemplate);
+  const imageUrl = getPlayerImageUrl({ teamAbbr, playerId });
 
   return (
-    <Link href={`/players/${id}`} isOverlay m={5}>
+    <Link href={`/players/${playerId}`} isOverlay m={5}>
       <Card
         direction="column"
         alignItems="center"
@@ -40,7 +41,7 @@ const PlayerCard = ({ player, teamId }) => {
       >
         <ImageComp
           name={fullName}
-          // src={imageUrl} // see above TODO regarding error
+          src={imageUrl}
           isPlayer
           size={AVATAR_SIZE.default}
           icon={<PlayerFallbackImage />}
@@ -66,7 +67,6 @@ PlayerCard.propTypes = {
     jerseyNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     position: PropTypes.shape({}),
   }).isRequired,
-  teamId: PropTypes.string.isRequired,
 };
 
 export default PlayerCard;

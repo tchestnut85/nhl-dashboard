@@ -6,6 +6,7 @@ import PlayerCard from '@/components/PlayerCard/PlayerCard';
 
 const Players = () => {
   const players = useSelector(state => state.team.currentTeam?.roster);
+
   const {
     query: { teamId },
   } = useRouter();
@@ -21,7 +22,7 @@ const Players = () => {
       alignItems="center"
     >
       {players.map(player => (
-        <PlayerCard key={player.person.id} player={player} teamId={teamId} />
+        <PlayerCard key={player.person.id} player={player} />
       ))}
     </Card>
   );
