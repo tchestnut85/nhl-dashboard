@@ -1,9 +1,9 @@
 import { Flex } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 
-import PageHeader from '@/components/PageHeader/PageHeader';
-import PlayerProfileCard from '@/components/PlayerCard/PlayerProfileCard';
-import PlayerStatsCard from '@/components/PlayerStatsCard/PlayerStatsCard';
+import PageHeader from '@/components/PageLayout/PageHeader';
+import PlayerProfileCard from '@/components/PlayerProfile/PlayerProfileCard';
+import PlayerStats from '@/components/PlayerProfile/PlayerStats';
 
 const Player = () => {
   const teamId = useSelector(
@@ -15,8 +15,9 @@ const Player = () => {
       <PageHeader backButtonHref={`/teams/${teamId}`}>
         <PlayerProfileCard />
       </PageHeader>
-      {/* <PlayerStatsCard /> */}
+      <PlayerStats />
     </Flex>
   );
 };
+
 export default Player;

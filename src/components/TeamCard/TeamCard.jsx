@@ -6,7 +6,7 @@ import { Flex, Text } from '@chakra-ui/react';
 import Heading from '@/components/Heading/Heading';
 import ImageComp from '@/components/ImageComp/ImageComp';
 import Card from '@/components/Card/Card';
-import PageHeaderSkeleton from '@/components/PageHeader/PageHeaderSkeleton';
+import PageHeaderSkeleton from '@/components/PageLayout/PageHeaderSkeleton';
 
 import { getSingleTeamWithRoster } from '@/redux/teams';
 import { MESSAGES } from '@/constants';
@@ -27,11 +27,17 @@ const TeamCard = () => {
   }, [teamId, isReady]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Card bg="lightslategray" color="white" wrap="wrap" {...containerSize}>
+    <Card
+      bg="lightslategray"
+      color="white"
+      wrap="wrap"
+      alignContent="center"
+      {...containerSize}
+    >
       {!Object.keys(team).length ? (
         <PageHeaderSkeleton />
       ) : (
-        <Flex gap={5} my={5}>
+        <Flex gap={5} my={5} justify="space-around" alignItems="center">
           <ImageComp name={team.name} src={team.logoUrl} />
           <Flex direction="column" gap={5}>
             <Heading message={team.name} mb="0" fontWeight="bold" />

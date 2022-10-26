@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 
-import PageHeader from '@/components/PageHeader/PageHeader';
+import PageHeader from '@/components/PageLayout/PageHeader';
 import Players from '@/components/Players/Players';
 import TeamCard from '@/components/TeamCard/TeamCard';
 

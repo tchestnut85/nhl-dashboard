@@ -6,16 +6,16 @@ import { Flex } from '@chakra-ui/react';
 import Heading from '@/components/Heading/Heading';
 import ImageComp from '@/components/ImageComp/ImageComp';
 import Card from '@/components/Card/Card';
-import PageHeaderSkeleton from '@/components/PageHeader/PageHeaderSkeleton';
-import PlayerCardDetails from './PlayerCardDetails';
-import PlayerFallbackImage from './PlayerFallbackImage';
+import PageHeaderSkeleton from '@/components/PageLayout/PageHeaderSkeleton';
+import PlayerFallbackImage from '@/components/PlayerCard/PlayerFallbackImage';
+import PlayerCardDetails from '@/components/PlayerCard/PlayerCardDetails';
 
 import { getSinglePlayer } from '@/redux/players';
-import { MESSAGES, PLAYER_IMAGE_URLS, AVATAR_SIZE } from '@/constants';
+import { PLAYER_IMAGE_URLS, AVATAR_SIZE, MESSAGES } from '@/constants';
 import getImageUrl from '@/utils/getImageUrl';
 
 const {
-  playerPage: { age: AGE_LABEL, nationality: NATIONALITY_LABEL },
+  playerPage: { labels },
 } = MESSAGES;
 
 const PlayerProfileCard = () => {
@@ -26,14 +26,14 @@ const PlayerProfileCard = () => {
   const dispatch = useDispatch();
   const player = useSelector(state => state.player.currentPlayer);
 
-  const { currentTeam = {}, primaryPosition = {} } = player;
-
   const containerSize = { w: '500px', h: '200px' };
 
   useEffect(() => {
     if (!isReady) return;
     dispatch(getSinglePlayer(playerId));
-  }, [playerId, isReady]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isReady, playerId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // if (!Object.keys(player).length) return null;
 
   return (
     <Card
@@ -43,7 +43,7 @@ const PlayerProfileCard = () => {
       alignContent="center"
       {...containerSize}
     >
-      {!player ? (
+      {!Object.keys(player).length ? (
         <PageHeaderSkeleton />
       ) : (
         <Flex
@@ -65,17 +65,15 @@ const PlayerProfileCard = () => {
             icon={<PlayerFallbackImage />}
           />
           <Flex direction="column" gap={5}>
-            <Heading message={player.fullName} mb="0" fontWeight="bold" />
-            <Flex gap={10}>
+            <Heading message={player?.fullName} mb="0" fontWeight="bold" />
+            <Flex gap={10} justify="space-evenly">
               <PlayerCardDetails
-                detailName={currentTeam.name}
-                detail={primaryPosition.name}
-                hasBoldLabel={false}
+                detailName={labels.team}
+                detail={player.currentTeam.name}
               />
               <PlayerCardDetails
-                detailName={`${AGE_LABEL}${player.currentAge}`}
-                detail={`${NATIONALITY_LABEL}${player.nationality}`}
-                hasBoldLabel={false}
+                detailName={labels.position}
+                detail={player.primaryPosition.name}
               />
             </Flex>
           </Flex>

@@ -65,7 +65,35 @@ export const MESSAGES = {
       },
     },
   },
+  playerPage: {
+    labels: {
+      age: 'Age',
+      nationality: 'Nationality',
+      team: 'Team',
+      position: 'Position',
+      shootsCatches: 'L/R Handed',
+      leftHand: 'Left',
+      rightHand: 'Right',
+      captainStatus: 'Captain',
+      captain: 'Captain',
+      alternate: 'Alternate',
+      rookie: 'Rookie',
+      number: 'Number',
+    },
+  },
   errors: {
     default: 'There was an error: ',
   },
+  yes: 'Yes',
+  no: 'No',
+};
+
+export const AVATAR_SIZE = {
+  default: '2xl',
+};
+
+export const COLORS = {
+  red: 'red',
+  green: 'green',
+  blue: 'blue',
 };
