@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Button } from '@chakra-ui/react';
 
 import ImageComp from '@/components/ImageComp/ImageComp';
 import Link from '@/components/Link/Link';
@@ -37,8 +37,10 @@ const Navbar = () => {
       <Heading as="h1" fontSize="5xl" message={MESSAGES.navHeading} />
       <Flex as="nav">
         {navConfig.map(({ id, label, href, handler }) => (
-          <Link key={id} href={href} fontSize="2xl">
-            <Text>{label}</Text>
+          <Link key={id} href={href} fontSize="2xl" noUnderline>
+            <Button colorScheme="blackAlpha" variant="solid">
+              {label}
+            </Button>
           </Link>
         ))}
       </Flex>

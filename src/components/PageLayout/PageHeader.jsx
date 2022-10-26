@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-
 import { Box, Button, Flex } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 
